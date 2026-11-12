@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { --ease: cubic-bezier(.22,1,.36,1); }
+
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+html { -webkit-text-size-adjust: 100%; }
+body {
+  @apply bg-sand-50 text-navy-900 font-sans antialiased;
+  overflow-x: hidden;
+}
+::selection { background: #43a8ea; color: #040b1c; }
+img { -webkit-user-drag: none; }
+
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-14; }
+  .eyebrow { @apply text-[11px] font-semibold uppercase tracking-[0.32em] text-ocean-500; }
+  .display { @apply font-display font-medium leading-[1.08] tracking-tight; }
+  .glass { @apply bg-white/10 backdrop-blur-xl border border-white/20; }
+  .glass-dark { @apply bg-navy-900/60 backdrop-blur-xl border border-white/10; }
+  .btn {
+    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full px-7 py-3.5 text-[13px] font-semibold uppercase tracking-[0.16em] transition-colors duration-500 select-none;
+  }
+  .btn-primary { @apply bg-ocean-500 text-white hover:bg-ocean-400; box-shadow: 0 10px 40px -10px rgba(27,134,214,.8); }
+  .btn-light { @apply bg-white text-navy-900 hover:bg-sand-100; }
+  .btn-ghost { @apply border border-white/40 text-white hover:bg-white hover:text-navy-900; }
+  .btn-outline { @apply border border-navy-900/20 text-navy-900 hover:bg-navy-900 hover:text-white; }
+  .field {
+    @apply w-full rounded-2xl border border-navy-900/10 bg-white px-5 py-4 text-[15px] text-navy-900 outline-none transition placeholder:text-navy-900/35 focus:border-ocean-500 focus:ring-4 focus:ring-ocean-500/15;
+  }
+  .field-error { @apply border-red-400 focus:border-red-400 focus:ring-red-400/20; }
+}
+
+.display { font-variant-numeric: lining-nums; }
+
+.grain::after {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 95; opacity: .05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+@keyframes kenburns { from { transform: scale(1.02) translate3d(0,0,0); } to { transform: scale(1.16) translate3d(-1.5%, -1%, 0); } }
+.kenburns { animation: kenburns 14s ease-out forwards; }
+
+@keyframes marquee { to { transform: translateX(-50%); } }
+.marquee { animation: marquee 38s linear infinite; }
+.marquee:hover { animation-play-state: paused; }
+
+@keyframes pulse-ring { 0% { transform: scale(.6); opacity: .8; } 100% { transform: scale(2.2); opacity: 0; } }
+.pulse-ring { animation: pulse-ring 2.2s ease-out infinite; }
+
+@media (hover: hover) and (pointer: fine) {
+  body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kenburns, .marquee { animation: none; }
+}
